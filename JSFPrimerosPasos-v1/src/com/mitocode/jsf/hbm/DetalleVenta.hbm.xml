@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Generated Feb 27, 2021, 9:56:05 AM by Hibernate Tools 5.4.27.Final --><!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping auto-import="true" default-access="property" default-cascade="none" default-lazy="true">
+    <class catalog="mitocode" dynamic-insert="false" dynamic-update="false" mutable="true" name="DetalleVenta" optimistic-lock="version" polymorphism="implicit" select-before-update="false" table="detalle_venta">
+        <id name="codigo" type="java.lang.Integer">
+            <column name="codigo"/>
+            <generator class="identity"/>
+        </id>
+        <many-to-one class="Producto" embed-xml="true" fetch="select" insert="true" name="producto" not-found="exception" optimistic-lock="true" unique="false" update="true">
+            <column name="cod_producto"/>
+        </many-to-one>
+        <many-to-one class="Venta" embed-xml="true" fetch="select" insert="true" name="venta" not-found="exception" optimistic-lock="true" unique="false" update="true">
+            <column name="cod_venta"/>
+        </many-to-one>
+        <property generated="never" lazy="false" name="cantidad" optimistic-lock="true" type="java.lang.Byte" unique="false">
+            <column name="cantidad"/>
+        </property>
+    </class>
+</hibernate-mapping>

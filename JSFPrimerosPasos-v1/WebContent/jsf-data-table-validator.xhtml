@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:h="http://java.sun.com/jsf/html"
+	  xmlns:f="http://java.sun.com/jsf/core">
+ <head>
+	<title>Form Validation</title>
+</head>
+
+<body>
+	<h:form>
+		<h:messages />
+		<h:panelGrid columns="3">
+			<h:outputLabel value="Name: " />                                         <!-- Will be Mandatory Field  -->
+			<h:inputText id="txtName"  value="#{personaBeanDataTable.persona.name}"  required="true" label="Name is required" /> 
+			<h:message for="txtName" style="color: red" />
+			
+			<h:outputLabel value="Last Name: " />                                 <!-- Will be a mandatory Field  -->
+			<h:inputText id="txtLastName" value="#{personaBeanDataTable.persona.lastName}" required="true"  label="Last Name is required"/>
+			<h:message for="txtLastName" style="color: red"/>
+			
+			<h:outputLabel value="Age: " />                                             <!-- set values between 1 to 18 -->
+			<h:inputText  id="txtAge"  value="#{personaBeanDataTable.persona.age}" label="1-18" >
+			<!-- 	<f:validateLongRange for="txtAge" minimum="1" maximum="18"/>  validator from BackBean-->
+				<f:validator validatorId="OverAgeValidator"/>
+			</h:inputText>
+			<h:message for="txtAge" style="color: red"></h:message>
+			
+			<h:outputLabel value="Genre: " /> <!-- set only valid values -->
+			<h:inputText id="txtGenre" value="#{personaBeanDataTable.persona.sex}" validator="#{personaBeanDataTable.validateInput}"/>
+			<h:message for="txtGenre" style="color: red"></h:message>
+			
+		</h:panelGrid>
+		
+		<h:commandButton value="Add" actionListener="#{personaBeanDataTable.addPersona}"/>
+		<h:commandButton value="Add without validations" actionListener="#{personaBeanDataTable.addPersona}" immediate="true"/>
+		
+		<h:dataTable value="#{personaBeanDataTable.lstPersonas}" var="per" rendered="#{personaBeanDataTable.lstPersonas.size() > 0 eq true}">
+			<h:column>
+				<f:facet name="header">
+					<h:outputLabel value="Name"></h:outputLabel>
+				</f:facet>
+				<h:outputLabel value="#{per.name}"></h:outputLabel>
+			</h:column>
+			
+			<h:column>
+				<f:facet name="header">
+					<h:outputLabel value="Last Name"></h:outputLabel>
+				</f:facet>
+				<h:outputLabel value="#{per.lastName}"></h:outputLabel>
+			</h:column>
+			
+			<h:column>
+				<f:facet name="header">
+					<h:outputLabel value="Age"></h:outputLabel>
+				</f:facet>
+				<h:outputLabel value="#{per.age}"></h:outputLabel>
+			</h:column>
+			
+			<h:column>
+				<f:facet name="header">
+					<h:outputLabel value="Sex"></h:outputLabel>
+				</f:facet>
+				<h:outputLabel value="#{per.sex}"></h:outputLabel>
+			</h:column>
+			
+			<h:column>
+				<h:commandLink value="delete" actionListener="#{personaBeanDataTable.deletePersona(per)}"/>
+			</h:column>
+		</h:dataTable>
+	
+	</h:form>
+</body>
+</html>

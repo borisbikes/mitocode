@@ -1,0 +1,29 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" 
+      xmlns:ui="http://java.sun.com/jsf/facelets" 
+      xmlns:h="http://java.sun.com/jsf/html" 
+      xmlns:f="http://java.sun.com/jsf/core">
+
+<head>
+	<title>JSF - Maven</title>
+</head>
+<body>
+	<h1>Start Session - Login</h1>
+	<h:form>
+		<h:panelGrid columns="3">
+			<h:outputText value="User"/>
+			<h:inputText id="txtName" value="#{userBean.user.name}"/>
+			<h:message for="txtName"/>
+			
+			<h:outputText value="Password"/>
+			<h:inputSecret id="txtPass" value="#{userBean.user.password}" type="password"/>
+			<h:message for="txtPass"/>
+			
+		
+		</h:panelGrid>
+		<h:commandButton value="Start"  action="#{userBean.checkInputData}"/>
+	</h:form>
+</body>
+   
+   
+</html>

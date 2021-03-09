@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:h="http://java.sun.com/jsf/html"
+	  xmlns:f="http://java.sun.com/jsf/core">
+ <head>
+	<title>Insert title here</title>
+</head>
+
+<body>
+	<h:form>
+		<h:panelGrid columns="2">
+		
+			<h:outputLabel value="Name: " />
+			<h:inputText value="#{personaBeanDataTable.persona.name}" />
+			
+			<h:outputLabel value="Last Name: " />
+			<h:inputText value="#{personaBeanDataTable.persona.lastName}" />
+			
+			<h:outputLabel value="Genre: " />
+			<h:selectOneMenu value="#{personaBeanDataTable.persona.sex}">
+				<f:selectItem itemValue="M" itemLabel="Male" />
+				<f:selectItem itemValue="F" itemLabel="Female" />
+			</h:selectOneMenu>
+			
+		</h:panelGrid>
+		
+		<h:commandButton value="Add" actionListener="#{personaBeanDataTable.addPersona}"/>
+		
+		<h:dataTable value="#{personaBeanDataTable.lstPersonas}" var="per" rendered="#{personaBeanDataTable.lstPersonas.size() > 0 eq true}">
+			<h:column>
+				<f:facet name="header">
+					<h:outputLabel value="Name"></h:outputLabel>
+				</f:facet>
+				<h:outputLabel value="#{per.name}"></h:outputLabel>
+			</h:column>
+			
+			<h:column>
+				<f:facet name="header">
+					<h:outputLabel value="Last Name"></h:outputLabel>
+				</f:facet>
+				<h:outputLabel value="#{per.lastName}"></h:outputLabel>
+			</h:column>
+			
+			<h:column>
+				<f:facet name="header">
+					<h:outputLabel value="Sex"></h:outputLabel>
+				</f:facet>
+				<h:outputLabel value="#{per.sex}"></h:outputLabel>
+			</h:column>
+			
+			<h:column>
+				<h:commandLink value="delete" actionListener="#{personaBeanDataTable.deletePersona(per)}"/>
+			</h:column>
+		</h:dataTable>
+	
+	</h:form>
+</body>
+</html>

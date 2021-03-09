@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:h="http://java.sun.com/jsf/html"
+	  xmlns:f="http://java.sun.com/jsf/core"
+	  xmlns:ui="http://java.sun.com/jsf/facelets">
+<head>
+	<title>welcome to Tijuana</title>
+</head>
+<body>
+	<h:form rendered="#{userBean.checkSession()}">
+		<h:panelGrid columns="5">
+			<h1>Welcome user: &nbsp;&nbsp;</h1>
+			<h:outputLabel value="#{userBean.user.name}"/>
+			<h:outputText value="&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" />
+			<h:outputText value="&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" />
+			<h:commandButton value="Log out"
+				action="#{userBean.closeSession}" inmediate="true"/>
+		</h:panelGrid>
+		
+		<h2>CRUD - Employees</h2>
+		
+		<h:panelGrid columns="2">
+			<h:outputLabel value="Names:" />
+			<h:inputText value="#{employeeBean.employee.names}" />
+			
+			<h:outputLabel value="Last Names:" />
+			<h:inputText value="#{employeeBean.employee.lastNames}" />
+			
+			<h:outputLabel value="Sex:" />
+			<h:selectOneMenu value="#{employeeBean.employee.sex}">
+				<f:selectItem itemValue="M" itemLabel="Male"/>
+				<f:selectItem itemValue="F" itemLabel="Female"/>
+			</h:selectOneMenu>
+		</h:panelGrid>
+		
+		<h:commandButton value="Add" action="#{employeeBean.add}"/>
+		<h:commandButton value="List" action="#{employeeBean.getAll}"/>
+		<h:commandButton value="Search" action="#{employeeBean.search}"/>
+		<br/>
+		<h:panelGrid columns="2">
+			<h:dataTable value="#{employeeBean.lstEmployees}" var="emp" 
+			rendered="#{employeeBean.lstEmployees.size() > 0 eq true}">
+				<h:column>
+					<f:facet name="header">Name</f:facet>
+					<h:outputLabel value="#{emp.names}"></h:outputLabel>
+				</h:column>
+				<h:column>
+					<f:facet name="header">Last Name</f:facet>
+					<h:outputLabel value="#{emp.lastNames}"></h:outputLabel>
+				</h:column>
+				<h:column>
+					<f:facet name="header">Sex</f:facet>
+					<h:outputLabel value="#{emp.sex}"></h:outputLabel>
+				</h:column>
+				<h:column>
+					<f:facet name="header">
+						<h:outputLabel value="Delete"></h:outputLabel>
+					</f:facet>
+					<h:commandLink actionListener="#{employeeBean.delete(emp)}" value="Delete" />
+				</h:column>
+				<h:column>
+					<f:facet name="header">
+						<h:outputLabel value="Modify"></h:outputLabel>
+					</f:facet>
+					<h:commandLink action="#{employeeBean.get(emp)}" value="Modify" />
+				</h:column>
+			
+			</h:dataTable>
+		</h:panelGrid>
+	</h:form>
+
+</body>
+</html>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:h="http://java.sun.com/jsf/html">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+	<title>JSF First Steps</title>
+</head>
+	
+	<body>
+		<h1>Hello Mars!</h1>
+		<h:form>
+			<h:outputLabel>Hello, what's your name? </h:outputLabel>
+			<h:inputText value="#{personaBean.name}"/>
+		<h:commandButton value="Greeting" actionListener="#{personaBean.greeting}"/>
+		
+		<h:outputLabel value="#{personaBean.message}"/>
+	</h:form>
+</body>
+</html>

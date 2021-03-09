@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Generated Feb 27, 2021, 9:56:05 AM by Hibernate Tools 5.4.27.Final --><!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping auto-import="true" default-access="property" default-cascade="none" default-lazy="true">
+    <class catalog="mitocode" dynamic-insert="false" dynamic-update="false" mutable="true" name="com.mitocode.jsf.model.Student" optimistic-lock="version" polymorphism="implicit" select-before-update="false" table="student">
+        <id name="stdCode" type="byte">
+            <column name="std_code"/>
+            <generator class="foreign">
+                <param name="property">user</param>
+            </generator>
+        </id>
+        <one-to-one class="com.mitocode.jsf.model.User" constrained="true" embed-xml="true" name="user"/>
+        <property generated="never" lazy="false" name="stdName" optimistic-lock="true" type="string" unique="false">
+            <column length="50" name="std_name"/>
+        </property>
+        <property generated="never" lazy="false" name="column3" optimistic-lock="true" type="string" unique="false">
+            <column length="50" name="`Column 3`"/>
+        </property>
+    </class>
+</hibernate-mapping>

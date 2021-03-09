@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Feb 27, 2021, 9:56:05 AM by Hibernate Tools 5.4.27.Final -->
+<hibernate-mapping default-access="field">
+ <class catalog="mitocode" name="com.mitocode.jsf.model.User" table="user">
+  <id name="usCode" type="java.lang.Byte">
+   <column name="us_code"/>
+   <generator class="identity"/>
+  </id>
+  <property generated="never" lazy="false" name="usName" type="string">
+   <column length="50" name="us_name"/>
+  </property>
+  <property generated="never" lazy="false" name="usPassword" type="string">
+   <column length="16" name="us_password"/>
+  </property>
+  <one-to-one class="com.mitocode.jsf.model.Employee" name="employee"/>
+  <one-to-one class="com.mitocode.jsf.model.Student" name="student"/>
+ </class>
+</hibernate-mapping>

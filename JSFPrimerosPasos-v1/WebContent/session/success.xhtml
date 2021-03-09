@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:h="http://java.sun.com/jsf/html"
+	  xmlns:f="http://java.sun.com/jsf/core"
+	  xmlns:ui="http://java.sun.com/jsf/facelets">
+<head>
+	<title>welcome to Tijuana</title>
+</head>
+<body>
+	<h:form rendered="#{userBean.checkSession">
+		<h:panelGrid columns="2">
+			<h1>Welcome user: </h1>
+			<h:outputLabel value="#{userBean.user.name}"/>
+			
+			<h:commandButton value="Close session"
+				action="#{userBean.closeSession}"/>
+		</h:panelGrid>
+		<h2>CRUD - Employees</h2>
+		<h:commandButton value="Add" action="#{empoyeeBean.add}"/>
+		<h:commandButton value="List" action="#{empoyeeBean.get}"/>
+		<h:commandButton value="Search" action="#{empoyeeBean.seach}"/>
+		
+		<h:dataTable value="#{empoyeeBean.lstEmployees}" var="emp">
+			<h:column>
+				<f:facet name="header">Name</f:facet>
+				<h:outputLabel value="emp.names"></h:outputLabel>
+			</h:column>
+			<h:column>
+				<f:facet name="header">Last Name</f:facet>
+				<h:outputLabel value="emp.lastNames"></h:outputLabel>
+			</h:column>
+			<h:column>
+				<f:facet name="header">Sex</f:facet>
+				<h:outputLabel value="emp.sex"></h:outputLabel>
+			</h:column>
+		
+		</h:dataTable>
+	</h:form>
+
+</body>
+</html>
